@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="360" viewBox="0 0 920 360" role="img" aria-label="Short video recommendation metrics snapshot">
+  <rect width="920" height="360" fill="#f7fbff"/>
+  <rect x="24" y="24" width="872" height="312" rx="14" fill="#ffffff" stroke="#d8e6f5"/>
+  <text x="48" y="62" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#17324d">Short Video Recommendation - Offline Metrics Snapshot</text>
+  <text x="48" y="90" font-family="Arial, sans-serif" font-size="14" fill="#5c6f82">7-day train / 1-day validation · Two-Tower recall · Faiss IndexFlatIP · pseudo/public-field schema</text>
+
+  <line x1="82" y1="278" x2="850" y2="278" stroke="#c9d8e8"/>
+  <line x1="82" y1="128" x2="82" y2="278" stroke="#c9d8e8"/>
+
+  <text x="112" y="304" font-family="Arial, sans-serif" font-size="13" fill="#41566b">Baseline</text>
+  <text x="278" y="304" font-family="Arial, sans-serif" font-size="13" fill="#41566b">+ Sequence</text>
+  <text x="456" y="304" font-family="Arial, sans-serif" font-size="13" fill="#41566b">+ Time Decay</text>
+  <text x="640" y="304" font-family="Arial, sans-serif" font-size="13" fill="#41566b">+ Mixed Negatives</text>
+
+  <rect x="118" y="166" width="64" height="112" rx="6" fill="#8bb8ff"/>
+  <rect x="302" y="159" width="64" height="119" rx="6" fill="#6fa4f7"/>
+  <rect x="486" y="155" width="64" height="123" rx="6" fill="#4c8ce8"/>
+  <rect x="684" y="152" width="64" height="126" rx="6" fill="#2066c2"/>
+
+  <text x="126" y="156" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#17324d">0.112</text>
+  <text x="310" y="149" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#17324d">0.119</text>
+  <text x="494" y="145" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#17324d">0.123</text>
+  <text x="692" y="142" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#17324d">0.126</text>
+
+  <circle cx="150" cy="236" r="5" fill="#19a974"/>
+  <circle cx="334" cy="226" r="5" fill="#19a974"/>
+  <circle cx="518" cy="218" r="5" fill="#19a974"/>
+  <circle cx="716" cy="207" r="5" fill="#19a974"/>
+  <polyline points="150,236 334,226 518,218 716,207" fill="none" stroke="#19a974" stroke-width="3"/>
+  <text x="760" y="211" font-family="Arial, sans-serif" font-size="13" fill="#147a4b">Tail Recall@50 0.058 -> 0.071</text>
+
+  <rect x="48" y="116" width="170" height="34" rx="17" fill="#eef5ff" stroke="#cfe0f4"/>
+  <text x="64" y="138" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#2066c2">Recall@50 0.112 -> 0.126</text>
+  <rect x="232" y="116" width="164" height="34" rx="17" fill="#eefbf5" stroke="#cceedd"/>
+  <text x="248" y="138" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#147a4b">NDCG@50 0.071 -> 0.079</text>
+  <rect x="410" y="116" width="210" height="34" rx="17" fill="#fff7e8" stroke="#f0ddb8"/>
+  <text x="426" y="138" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#8a5f13">Random split recorded as leakage check</text>
+</svg>

@@ -26,7 +26,8 @@ The resume project claims a recommendation retrieval/ranking pipeline, so this r
 | Faiss IndexFlatIP top-k retrieval | `src/build_faiss_index.py`, `src/evaluate_recall.py` |
 | Recall@50 / NDCG@50 / tail Recall@50 | `experiments/metrics.csv`, `assets/results_summary.md` |
 | Feature ablation and leakage check | `experiments/ablation.csv`, `notebooks/data_distribution.ipynb` |
-| Badcase review | `badcases/badcase_samples.csv` |
+| Badcase review | `badcases/badcase_samples.csv`, `docs/interview_qa.md` |
+| Metric snapshot | `assets/metrics_snapshot.svg`, `assets/results_summary.md` |
 
 ## Repository Structure
 
@@ -67,11 +68,26 @@ The scripts are CPU-friendly and run on pseudo data. They are meant to demonstra
 
 ## Offline Metrics Used in the Resume
 
+![metrics snapshot](assets/metrics_snapshot.svg)
+
 | Setup | Split | Recall@50 | NDCG@50 | Tail Recall@50 | Note |
 |---|---|---:|---:|---:|---|
 | Two-Tower + mean pooling baseline | 7d train / 1d valid | 0.112 | 0.071 | 0.058 | ID/category/history baseline |
 | + sequence + time decay + mixed negatives | 7d train / 1d valid | 0.126 | 0.079 | 0.071 | Main resume result |
 | Same setup with random split | random split | 0.139 | 0.086 | 0.074 | Higher but not reported due to leakage risk |
+
+## Evidence Files For Interview Review
+
+| File | Why it matters |
+|---|---|
+| `data_schema.md` | Explains user/item/exposure/feedback/time fields and the public-field schema boundary. |
+| `src/train_twotower.py` | Shows the Two-Tower training entry point and model metadata generation. |
+| `src/build_faiss_index.py` | Shows the offline top-k retrieval path and `IndexFlatIP`-style evidence. |
+| `experiments/metrics.csv` | Records baseline, sequence, time-decay, mixed-negative, and random-split comparison. |
+| `experiments/ablation.csv` | Explains where the Recall@50 lift comes from instead of saying "model improved". |
+| `badcases/badcase_samples.csv` | Keeps failure cases for head leakage, author repeat, cold start, and noisy negatives. |
+| `docs/interview_qa.md` | Prepared answers for dataset source, loss, sampling, metrics, Faiss, and leakage questions. |
+| `docs/experiment_log.md` | Human-readable experiment log with decisions, metrics, and risks. |
 
 ## Key Interview Answers
 
@@ -99,10 +115,13 @@ Two-Tower is a retrieval module. Its job is to place relevant candidates into to
 
 The offline candidate size is around 30k videos, so exact inner-product search is sufficient and avoids approximate-index noise. IVF/HNSW would be considered when the item scale grows to millions.
 
+### What exactly improved Recall@50?
+
+The strongest validated run did not come from a single magic model change. The lift came from adding recent behavior sequence, time decay, user-category preference crossing, author interaction features, and mixed weak negatives. The ablation log shows Recall@50 moving from `0.112 -> 0.119 -> 0.123 -> 0.125 -> 0.126`.
+
 ## What This Repo Does Not Claim
 
 - It is not an online ByteDance/TikTok system.
 - It does not contain private user data.
 - It does not claim online A/B lift.
 - It is a reproducible evidence-chain repo for recommendation retrieval/ranking interview discussion.
-
