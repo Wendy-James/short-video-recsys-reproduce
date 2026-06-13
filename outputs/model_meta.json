@@ -1,0 +1,11 @@
+{
+  "model": "toy_two_tower_embedding_export",
+  "embedding_dim": 32,
+  "loss_candidates": [
+    "bce",
+    "sampled_softmax"
+  ],
+  "index_type": "IndexFlatIP",
+  "num_users": 80,
+  "num_items": 218
+}

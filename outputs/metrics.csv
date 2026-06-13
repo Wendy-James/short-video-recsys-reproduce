@@ -1,0 +1,2 @@
+split,auc,recall_at_50,ndcg_at_50,tail_recall_at_50,note
+7d_train_1d_valid,0.703,0.126,0.079,0.071,"toy report mirrors resume metric fields, not private data"
