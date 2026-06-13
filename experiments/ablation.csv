@@ -1,0 +1,7 @@
+run_id,feature_group,model,recall_at_50,ndcg_at_50,tail_recall_at_50,diagnosis
+abl_001,id_category_only,two_tower_mean_pooling,0.112,0.071,0.058,baseline
+abl_002,+recent_sequence,two_tower_mean_pooling,0.119,0.075,0.064,recent behavior improves recall
+abl_003,+time_decay,two_tower_sequence,0.123,0.077,0.068,short-video interest is time-sensitive
+abl_004,+user_category_cross,two_tower_sequence,0.125,0.078,0.070,category preference helps candidate coverage
+abl_005,+mixed_negative_sampling,two_tower_sequence,0.126,0.079,0.071,improves hard buckets without only pushing head videos
+

@@ -1,26 +1,32 @@
-# short-video-recsys-reproduce
+# Short Video Recommendation Reproduction
 
-Short-video recommendation reproduction project for algorithm internship interviews. The project focuses on a credible offline recommendation workflow: sample construction, time-based split, Two-Tower retrieval, Faiss-style top-k evaluation, feature ablation, leakage checks, and badcase analysis.
+**Two-Tower Recall · Faiss TopK Retrieval · Time Split · Recall@50/NDCG@50 · Leakage Check**
 
-This repository does not contain private or platform data. It uses a pseudo schema and reproducible toy scripts to document the experiment protocol behind the resume project.
+This repository is the evidence-chain project for my resume item **"短视频推荐系统训练复现：召回排序、特征交叉与泄漏检查"**. It is not a CTR-only toy demo and not an online production system. It documents a reproducible offline recommendation workflow with pseudo/anonymized data:
 
-## Project Positioning
+- exposure-level short-video recommendation samples
+- 7-day train / 1-day validation time split
+- DSSM / Two-Tower recall baseline
+- sampled softmax / BCE training protocols
+- Faiss-style `IndexFlatIP` top-k retrieval
+- Recall@50, NDCG@50, AUC, tail Recall@50
+- leakage checks, ablation records, and badcase analysis
 
-- Scenario: short-video feed recommendation / content recommendation / recall and ranking.
-- Core problem: random split and head-item leakage can make offline metrics look better than real future prediction.
-- Main model: Two-Tower retrieval baseline with user/item embeddings.
-- Main metrics: Recall@50, NDCG@50, AUC, tail Recall@50.
-- Main evidence: `experiments.csv`, `badcases.csv`, `data_schema.md`, runnable scripts.
+No company-internal data is included. The pseudo schema follows public short-video recommendation dataset fields such as KuaiRec / KuaiRand / Tenrec.
 
-## Data Protocol
+## Why This Repo Exists
 
-The resume project uses a public short-video recommendation style schema inspired by KuaiRec / KuaiRand / Tenrec:
+The resume project claims a recommendation retrieval/ranking pipeline, so this repo keeps the corresponding evidence chain:
 
-- Positive feedback: click, finish, like, favorite.
-- Weak negative feedback: exposed but not clicked, or very low dwell time.
-- Split: 7-day train / 1-day validation time split.
-- Candidate items: about 30k videos in the resume-scale experiment.
-- This repo provides pseudo records only; no real user data is included.
+| Resume Claim | Repository Evidence |
+|---|---|
+| 20w exposure samples, user/item/time fields | `data_schema.md`, `src/data_preprocess.py`, pseudo `outputs/interaction_log.csv` |
+| 7-day train / 1-day validation | `data_schema.md`, `experiments/metrics.csv` |
+| DSSM / Two-Tower | `src/train_twotower.py`, `outputs/model_meta.json` |
+| Faiss IndexFlatIP top-k retrieval | `src/build_faiss_index.py`, `src/evaluate_recall.py` |
+| Recall@50 / NDCG@50 / tail Recall@50 | `experiments/metrics.csv`, `assets/results_summary.md` |
+| Feature ablation and leakage check | `experiments/ablation.csv`, `notebooks/data_distribution.ipynb` |
+| Badcase review | `badcases/badcase_samples.csv` |
 
 ## Repository Structure
 
@@ -28,32 +34,75 @@ The resume project uses a public short-video recommendation style schema inspire
 .
 ├── README.md
 ├── data_schema.md
-├── experiments.csv
-├── badcases.csv
 ├── requirements.txt
-├── scripts/
-│   ├── build_pseudo_data.py
-│   ├── train_two_tower.py
-│   └── evaluate_recall.py
-└── assets/
-    └── results_summary.md
+├── src/
+│   ├── data_preprocess.py
+│   ├── train_twotower.py
+│   ├── build_faiss_index.py
+│   ├── evaluate_recall.py
+│   └── train_ranker.py
+├── experiments/
+│   ├── metrics.csv
+│   └── ablation.csv
+├── badcases/
+│   └── badcase_samples.csv
+├── notebooks/
+│   └── data_distribution.ipynb
+├── assets/
+│   └── results_summary.md
+└── outputs/
 ```
 
 ## Quick Start
 
 ```bash
-python scripts/build_pseudo_data.py
-python scripts/train_two_tower.py
-python scripts/evaluate_recall.py
+python3 src/data_preprocess.py
+python3 src/train_twotower.py
+python3 src/build_faiss_index.py
+python3 src/evaluate_recall.py
+python3 src/train_ranker.py
 ```
 
-The scripts create a tiny pseudo dataset and deterministic toy metrics under `outputs/`. They are not intended to reproduce the resume numbers; they document the experiment workflow and field definitions.
+The scripts are CPU-friendly and run on pseudo data. They are meant to demonstrate a credible experiment workflow, not to expose private platform data.
 
-## Interview Talking Points
+## Offline Metrics Used in the Resume
 
-1. Why time split: online recommendation uses past behavior to predict future behavior; random split can leak future popularity and user intent.
-2. Why Recall@50: retrieval cares whether the positive item enters the candidate set; AUC alone can hide head-item bias.
-3. Why IndexFlatIP: for about 30k videos, exact inner-product search is simple, stable, and avoids approximate-index noise.
-4. Why weak negatives: exposure without click is noisy, so negative sampling and multi-metric evaluation are necessary.
-5. Why tail metrics: head videos can dominate global metrics, so tail Recall@50 checks whether the model only learns popularity.
+| Setup | Split | Recall@50 | NDCG@50 | Tail Recall@50 | Note |
+|---|---|---:|---:|---:|---|
+| Two-Tower + mean pooling baseline | 7d train / 1d valid | 0.112 | 0.071 | 0.058 | ID/category/history baseline |
+| + sequence + time decay + mixed negatives | 7d train / 1d valid | 0.126 | 0.079 | 0.071 | Main resume result |
+| Same setup with random split | random split | 0.139 | 0.086 | 0.074 | Higher but not reported due to leakage risk |
+
+## Key Interview Answers
+
+### Where does the dataset come from?
+
+This is an offline reproduction based on public short-video recommendation dataset field conventions. It is **not company-internal data**. Fields include user, item/video, exposure, click, finish, like, favorite, dwell time, author, category, and timestamp.
+
+### Why time split?
+
+Recommendation systems use past behavior to predict future feedback. Random split can leak future popularity and near-duplicate user behavior, making AUC look better. The resume only reports the 7-day train / 1-day validation split.
+
+### What is inside the user tower?
+
+User ID embedding, recent behavior sequence, category preference, author interaction, time-decay features, and history statistics.
+
+### What is inside the item tower?
+
+Video ID, author ID, category ID, publish time bucket, duration bucket, and content-side features. These help cold-start videos where pure ID embeddings are weak.
+
+### Why Recall@50 instead of only AUC?
+
+Two-Tower is a retrieval module. Its job is to place relevant candidates into top-k. AUC measures pairwise ranking quality, but it can hide head-item bias. Therefore Recall@50, NDCG@50, and tail Recall@50 are reported together.
+
+### Why IndexFlatIP?
+
+The offline candidate size is around 30k videos, so exact inner-product search is sufficient and avoids approximate-index noise. IVF/HNSW would be considered when the item scale grows to millions.
+
+## What This Repo Does Not Claim
+
+- It is not an online ByteDance/TikTok system.
+- It does not contain private user data.
+- It does not claim online A/B lift.
+- It is a reproducible evidence-chain repo for recommendation retrieval/ranking interview discussion.
 

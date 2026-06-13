@@ -1,0 +1,6 @@
+case_id,error_type,user_context,item_context,model_score,expected_issue,next_action
+bc_001,head_leakage,user repeatedly watched head authors,head video appears in both random train and valid,0.91,random split overestimates performance,use time split and head/tail bucket metrics
+bc_002,author_repeat,user overexposed to same creator,similar author video ranked too high,0.87,model learns author repetition instead of interest diversity,add author-repeat feature and diversity check
+bc_003,cold_start,new video has few interactions,tail video not recalled,0.21,pure ID embedding is weak for new items,add category author and content-side features
+bc_004,weak_negative_noise,user exposed but did not click,video may be relevant but position was low,0.18,exposure-not-click is noisy negative,control negative sampling ratio
+

@@ -1,0 +1,6 @@
+{
+  "index_type": "IndexFlatIP",
+  "num_items": 218,
+  "embedding_dim": 32,
+  "note": "Exact inner-product retrieval emulated with NumPy for public smoke test."
+}

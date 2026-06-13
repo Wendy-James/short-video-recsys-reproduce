@@ -1,0 +1,6 @@
+run_id,date,data_version,split,model,embedding_dim,seq_len,negative_sampling,loss,index_type,auc,recall_at_50,ndcg_at_50,tail_recall_at_50,note
+svr_001,2026-06-10,pseudo_v1,7d_train_1d_valid,two_tower_id_only,64,20,random,bce,IndexFlatIP,0.681,0.112,0.071,0.058,baseline with ID and category features
+svr_002,2026-06-10,pseudo_v1,7d_train_1d_valid,two_tower_seq,64,20,random,bce,IndexFlatIP,0.694,0.119,0.075,0.064,add recent behavior sequence
+svr_003,2026-06-11,pseudo_v1,7d_train_1d_valid,two_tower_seq_time_decay,128,50,mixed_weak_negative,sampled_softmax,IndexFlatIP,0.703,0.126,0.079,0.071,add time decay and mixed negatives
+svr_004,2026-06-11,pseudo_v1,random_split,two_tower_seq_time_decay,128,50,mixed_weak_negative,sampled_softmax,IndexFlatIP,0.724,0.139,0.086,0.074,random split is higher but has leakage risk
+
