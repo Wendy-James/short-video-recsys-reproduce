@@ -1,0 +1,21 @@
+<svg width="980" height="390" viewBox="0 0 980 390" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Terminal output showing make all pipeline success">
+  <rect width="980" height="390" rx="12" fill="#0f172a"/>
+  <rect x="0" y="0" width="980" height="42" rx="12" fill="#1e293b"/>
+  <circle cx="24" cy="21" r="6" fill="#ef4444"/>
+  <circle cx="44" cy="21" r="6" fill="#f59e0b"/>
+  <circle cx="64" cy="21" r="6" fill="#22c55e"/>
+  <text x="88" y="27" fill="#cbd5e1" font-family="Menlo, Consolas, monospace" font-size="14">short-video-recsys-reproduce — make all</text>
+  <text x="24" y="72" fill="#93c5fd" font-family="Menlo, Consolas, monospace" font-size="15">$ make all</text>
+  <text x="24" y="101" fill="#e2e8f0" font-family="Menlo, Consolas, monospace" font-size="14">python3 src/data_preprocess.py</text>
+  <text x="24" y="126" fill="#a7f3d0" font-family="Menlo, Consolas, monospace" font-size="14">wrote outputs/interaction_log.csv</text>
+  <text x="24" y="151" fill="#e2e8f0" font-family="Menlo, Consolas, monospace" font-size="14">python3 src/train_twotower.py</text>
+  <text x="24" y="176" fill="#a7f3d0" font-family="Menlo, Consolas, monospace" font-size="14">wrote outputs/model_meta.json</text>
+  <text x="24" y="201" fill="#e2e8f0" font-family="Menlo, Consolas, monospace" font-size="14">python3 src/build_faiss_index.py</text>
+  <text x="24" y="226" fill="#a7f3d0" font-family="Menlo, Consolas, monospace" font-size="14">wrote outputs/item_index_flatip.npy</text>
+  <text x="24" y="251" fill="#e2e8f0" font-family="Menlo, Consolas, monospace" font-size="14">python3 src/evaluate_recall.py</text>
+  <text x="24" y="276" fill="#a7f3d0" font-family="Menlo, Consolas, monospace" font-size="14">wrote outputs/metrics.csv</text>
+  <text x="24" y="301" fill="#e2e8f0" font-family="Menlo, Consolas, monospace" font-size="14">python3 src/train_ranker.py</text>
+  <text x="24" y="326" fill="#a7f3d0" font-family="Menlo, Consolas, monospace" font-size="14">wrote outputs/ranker_scores.csv</text>
+  <text x="24" y="351" fill="#e2e8f0" font-family="Menlo, Consolas, monospace" font-size="14">python3 -m pytest -q</text>
+  <text x="24" y="376" fill="#86efac" font-family="Menlo, Consolas, monospace" font-size="14">......  [100%]  6 passed in 0.04s</text>
+</svg>

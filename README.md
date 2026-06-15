@@ -20,6 +20,10 @@ This repository implements an offline short-video recommendation workflow for ca
 | Two-Tower + mean pooling baseline | 7d train / 1d valid | 0.112 | 0.071 | 0.058 |
 | + sequence + time decay + mixed negatives | 7d train / 1d valid | 0.126 | 0.079 | 0.071 |
 
+## Run Snapshot
+
+![terminal snapshot](assets/terminal_snapshot.svg)
+
 ## Experiment Coverage
 
 This repo keeps the key artifacts needed to discuss a recommendation recall/ranking experiment end to end:
