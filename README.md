@@ -2,17 +2,23 @@
 
 **Two-Tower Recall · Faiss TopK Retrieval · Time Split · Recall@50/NDCG@50 · Leakage Check**
 
-This repository implements a reproducible offline short-video recommendation workflow, focusing on candidate generation, retrieval evaluation, time-based validation, and leakage checks. The goal is to make each modeling decision inspectable through code, experiment tables, ablation records, and badcase analysis.
+This repository implements an offline short-video recommendation workflow for candidate generation, top-k retrieval evaluation, leakage checks, and experiment review.
 
-- exposure-level short-video recommendation samples
-- 7-day train / 1-day validation time split
-- DSSM / Two-Tower recall baseline
-- sampled softmax / BCE training protocols
-- Faiss-style `IndexFlatIP` top-k retrieval
-- Recall@50, NDCG@50, AUC, tail Recall@50
-- leakage checks, ablation records, and badcase analysis
+## What It Does
 
-The public version uses pseudo/anonymized data with field conventions aligned to public short-video recommendation datasets such as KuaiRec, KuaiRand, and Tenrec. It is designed for small-scale CPU reproduction while preserving the same evaluation logic used in larger offline experiments.
+- build exposure-level recommendation samples with user, item, feedback, category, author, and timestamp fields
+- train a DSSM / Two-Tower recall model with sampled-softmax and BCE-style training protocols
+- build Faiss-style `IndexFlatIP` item retrieval and evaluate top-k candidate quality
+- evaluate Recall@50, NDCG@50, AUC, and tail Recall@50 under a 7-day train / 1-day validation split
+- run leakage checks, feature ablation, negative-sampling comparison, and random-split contrast
+- output reproducible metrics, experiment tables, and badcase records for review
+
+## Result Snapshot
+
+| Setup | Split | Recall@50 | NDCG@50 | Tail Recall@50 |
+|---|---|---:|---:|---:|
+| Two-Tower + mean pooling baseline | 7d train / 1d valid | 0.112 | 0.071 | 0.058 |
+| + sequence + time decay + mixed negatives | 7d train / 1d valid | 0.126 | 0.079 | 0.071 |
 
 ## Experiment Coverage
 
@@ -132,6 +138,7 @@ The strongest validated run did not come from a single magic model change. The l
 
 ## What This Repo Does Not Claim
 
+- The public version uses pseudo/anonymized data with field conventions aligned to public short-video recommendation datasets such as KuaiRec, KuaiRand, and Tenrec.
 - It is not an online ByteDance/TikTok system.
 - It does not contain private user data.
 - It does not claim online A/B lift.
