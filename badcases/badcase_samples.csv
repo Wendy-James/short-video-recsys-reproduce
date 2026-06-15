@@ -3,4 +3,9 @@ bc_001,head_leakage,user repeatedly watched head authors,head video appears in b
 bc_002,author_repeat,user overexposed to same creator,similar author video ranked too high,0.87,model learns author repetition instead of interest diversity,add author-repeat feature and diversity check
 bc_003,cold_start,new video has few interactions,tail video not recalled,0.21,pure ID embedding is weak for new items,add category author and content-side features
 bc_004,weak_negative_noise,user exposed but did not click,video may be relevant but position was low,0.18,exposure-not-click is noisy negative,control negative sampling ratio
-
+bc_005,position_bias,user saw item at low feed position,unclicked video sampled as negative,0.16,negative may reflect position not preference,add position bucket and down-weight low-position negatives
+bc_006,short_clickbait,user clicks many short videos,short sensational video ranked high,0.84,click label improves but finish rate may drop,add finish/watch-time guardrail
+bc_007,interest_drift,user recently shifted from sports to cooking,old sports video recalled,0.78,long history overpowers recent interest,increase time-decay weight and test recent-window length
+bc_008,category_overfit,user watches one broad category,many same-category videos dominate top-k,0.82,category feature causes low diversity,add category diversity and repeated-category cap
+bc_009,new_author_sparsity,user likes niche creators,new author video missing from top50,0.24,author ID feature hurts unseen authors,use content/category features for cold-start authors
+bc_010,duplicate_content,user watched near-duplicate clips,duplicate video appears in top-k,0.88,model retrieves repeated content instead of fresh candidates,add duplicate-content filtering before ranking

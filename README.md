@@ -26,7 +26,7 @@ The resume project claims a recommendation retrieval/ranking pipeline, so this r
 | Faiss IndexFlatIP top-k retrieval | `src/build_faiss_index.py`, `src/evaluate_recall.py` |
 | Recall@50 / NDCG@50 / tail Recall@50 | `experiments/metrics.csv`, `assets/results_summary.md` |
 | Feature ablation and leakage check | `experiments/ablation.csv`, `notebooks/data_distribution.ipynb` |
-| Badcase review | `badcases/badcase_samples.csv`, `docs/interview_qa.md` |
+| Badcase review | `badcases/badcase_samples.csv` with 10 anonymized failure cases, `docs/interview_qa.md` |
 | Metric snapshot | `assets/metrics_snapshot.svg`, `assets/results_summary.md` |
 
 ## Repository Structure
