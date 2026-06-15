@@ -56,12 +56,21 @@ The resume project claims a recommendation retrieval/ranking pipeline, so this r
 
 ## Quick Start
 
+Recommended:
+
+```bash
+make all
+```
+
+Equivalent manual commands:
+
 ```bash
 python3 src/data_preprocess.py
 python3 src/train_twotower.py
 python3 src/build_faiss_index.py
 python3 src/evaluate_recall.py
 python3 src/train_ranker.py
+python3 -m pytest -q
 ```
 
 The scripts are CPU-friendly and run on pseudo data. They are meant to demonstrate a credible experiment workflow, not to expose private platform data.
@@ -88,6 +97,8 @@ The scripts are CPU-friendly and run on pseudo data. They are meant to demonstra
 | `badcases/badcase_samples.csv` | Keeps failure cases for head leakage, author repeat, cold start, and noisy negatives. |
 | `docs/interview_qa.md` | Prepared answers for dataset source, loss, sampling, metrics, Faiss, and leakage questions. |
 | `docs/experiment_log.md` | Human-readable experiment log with decisions, metrics, and risks. |
+| `docs/dev_log.md` | Explains that this is a June 2026 public evidence repo using pseudo/anonymized data. |
+| `tests/` | Pytest checks for data split, metric consistency, and negative-sampling assumptions. |
 
 ## Key Interview Answers
 
