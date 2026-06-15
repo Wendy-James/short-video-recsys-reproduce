@@ -1,11 +1,12 @@
 {
-  "model": "toy_two_tower_embedding_export",
+  "model": "two_tower_recall",
+  "backend": "numpy_sgd",
   "embedding_dim": 32,
-  "loss_candidates": [
-    "bce",
-    "sampled_softmax"
-  ],
+  "loss": "binary_cross_entropy",
   "index_type": "IndexFlatIP",
   "num_users": 80,
-  "num_items": 218
+  "num_items": 218,
+  "train_rows": 513,
+  "positive_rate": 0.1657,
+  "final_loss": 0.275187
 }

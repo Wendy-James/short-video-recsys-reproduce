@@ -1,6 +1,6 @@
 # Interview Q&A
 
-This document turns the repository into an interview evidence chain. The safe positioning is: offline recommendation reproduction with pseudo/public-field schema, not a company production system.
+This document explains the public reproducible workflow. The safe positioning is: offline recommendation reproduction with pseudo/public-field schema, not a company production system.
 
 ## 1. Where does the dataset come from?
 
@@ -65,4 +65,4 @@ The answer should be "incremental feature and sampling improvements", not "the m
 
 ## 10. What is the real deliverable?
 
-The deliverable is a reproducible offline evidence chain: schema, preprocessing script, Two-Tower training script, Faiss-style retrieval script, metrics CSV, ablation CSV, badcase table, and interview notes. I do not claim online deployment or A/B-test ownership.
+The deliverable is a reproducible offline workflow: schema, preprocessing script, Two-Tower training script, Faiss-style retrieval script, metrics CSV, ablation CSV, badcase table, and interview notes. I do not claim online deployment or A/B-test ownership.

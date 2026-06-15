@@ -1,4 +1,4 @@
-"""Toy ranking-stage script for feature crossing and AUC-style reporting."""
+"""Train a lightweight ranking-stage score from interpretable crossing features."""
 
 from __future__ import annotations
 
@@ -47,4 +47,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

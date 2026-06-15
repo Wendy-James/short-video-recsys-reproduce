@@ -31,3 +31,15 @@ def test_random_split_is_not_the_reported_main_result() -> None:
     assert random_split["split"] == "random_split"
     assert float(random_split["recall_at_50"]) > float(main["recall_at_50"])
     assert "leakage" in random_split["note"]
+
+
+def test_training_output_is_not_placeholder() -> None:
+    import json
+
+    meta = json.loads((ROOT / "outputs" / "model_meta.json").read_text(encoding="utf-8"))
+
+    assert meta["model"] == "two_tower_recall"
+    assert meta["backend"] in {"numpy_sgd", "pytorch"}
+    assert meta["final_loss"] > 0
+    assert (ROOT / "outputs" / "user_embeddings.npy").exists()
+    assert (ROOT / "outputs" / "item_embeddings.npy").exists()

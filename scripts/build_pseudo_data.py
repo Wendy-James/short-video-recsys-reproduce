@@ -1,4 +1,4 @@
-"""Build a tiny pseudo interaction log for documentation and smoke tests."""
+"""Build a small pseudo interaction log for offline recommendation experiments."""
 
 from __future__ import annotations
 
@@ -65,4 +65,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
