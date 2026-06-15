@@ -2,7 +2,7 @@
 
 **Two-Tower Recall · Faiss TopK Retrieval · Time Split · Recall@50/NDCG@50 · Leakage Check**
 
-This repository is the evidence-chain project for my resume item **"短视频推荐系统训练复现：召回排序、特征交叉与泄漏检查"**. It is not a CTR-only toy demo and not an online production system. It documents a reproducible offline recommendation workflow with pseudo/anonymized data:
+This repository implements a reproducible offline short-video recommendation workflow, focusing on candidate generation, retrieval evaluation, time-based validation, and leakage checks. The goal is to make each modeling decision inspectable through code, experiment tables, ablation records, and badcase analysis.
 
 - exposure-level short-video recommendation samples
 - 7-day train / 1-day validation time split
@@ -12,15 +12,15 @@ This repository is the evidence-chain project for my resume item **"短视频推
 - Recall@50, NDCG@50, AUC, tail Recall@50
 - leakage checks, ablation records, and badcase analysis
 
-No company-internal data is included. The pseudo schema follows public short-video recommendation dataset fields such as KuaiRec / KuaiRand / Tenrec.
+The public version uses pseudo/anonymized data with field conventions aligned to public short-video recommendation datasets such as KuaiRec, KuaiRand, and Tenrec. It is designed for small-scale CPU reproduction while preserving the same evaluation logic used in larger offline experiments.
 
-## Why This Repo Exists
+## Experiment Coverage
 
-The resume project claims a recommendation retrieval/ranking pipeline, so this repo keeps the corresponding evidence chain:
+This repo keeps the key artifacts needed to discuss a recommendation recall/ranking experiment end to end:
 
-| Resume Claim | Repository Evidence |
+| Experiment Topic | Repository Artifact |
 |---|---|
-| 20w exposure samples, user/item/time fields | `data_schema.md`, `src/data_preprocess.py`, pseudo `outputs/interaction_log.csv` |
+| exposure samples, user/item/time fields | `data_schema.md`, `src/data_preprocess.py`, pseudo `outputs/interaction_log.csv` |
 | 7-day train / 1-day validation | `data_schema.md`, `experiments/metrics.csv` |
 | DSSM / Two-Tower | `src/train_twotower.py`, `outputs/model_meta.json` |
 | Faiss IndexFlatIP top-k retrieval | `src/build_faiss_index.py`, `src/evaluate_recall.py` |
@@ -97,7 +97,7 @@ The scripts are CPU-friendly and run on pseudo data. They are meant to demonstra
 | `badcases/badcase_samples.csv` | Keeps failure cases for head leakage, author repeat, cold start, and noisy negatives. |
 | `docs/interview_qa.md` | Prepared answers for dataset source, loss, sampling, metrics, Faiss, and leakage questions. |
 | `docs/experiment_log.md` | Human-readable experiment log with decisions, metrics, and risks. |
-| `docs/dev_log.md` | Explains that this is a June 2026 public evidence repo using pseudo/anonymized data. |
+| `docs/dev_log.md` | Records how the public reproducible version is organized and what data boundary it follows. |
 | `tests/` | Pytest checks for data split, metric consistency, and negative-sampling assumptions. |
 
 ## Key Interview Answers
@@ -135,4 +135,4 @@ The strongest validated run did not come from a single magic model change. The l
 - It is not an online ByteDance/TikTok system.
 - It does not contain private user data.
 - It does not claim online A/B lift.
-- It is a reproducible evidence-chain repo for recommendation retrieval/ranking interview discussion.
+- It is a public reproducible version for recommendation retrieval/ranking discussion and code review.
