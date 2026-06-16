@@ -2,11 +2,19 @@
 
 **Two-Tower Recall · Faiss TopK Retrieval · Time Split · Recall@50/NDCG@50 · Leakage Check**
 
+## Background
+
 This repository implements an offline short-video recommendation workflow for candidate generation, top-k retrieval evaluation, leakage checks, and experiment review.
 
 **Public reproducible version; no private company data; no online A/B claim.**
 
-## What It Does
+## Dataset Boundary
+
+This repository uses pseudo/anonymized data to reproduce the offline evaluation pipeline. It does not contain company data or online production code.
+
+The public schema follows common short-video recommendation fields: user, item/video, exposure, click, finish, like, favorite, dwell time, author, category, and timestamp.
+
+## Method
 
 - build exposure-level recommendation samples with user, item, feedback, category, author, and timestamp fields
 - build random, popular, same-category, and in-batch negative-sampling diagnostics
@@ -16,12 +24,20 @@ This repository implements an offline short-video recommendation workflow for ca
 - run leakage checks, feature ablation, negative-sampling comparison, and random-split contrast
 - output reproducible metrics, experiment tables, and badcase records for review
 
-## Result Snapshot
+## Metrics
 
 | Setup | Split | Recall@50 | NDCG@50 | Tail Recall@50 |
 |---|---|---:|---:|---:|
 | Two-Tower + mean pooling baseline | 7d train / 1d valid | 0.112 | 0.071 | 0.058 |
 | + sequence + time decay + mixed negatives | 7d train / 1d valid | 0.126 | 0.079 | 0.071 |
+
+## Ablation
+
+The ablation table is available at [`ablation.csv`](ablation.csv) and [`experiments/ablation.csv`](experiments/ablation.csv). It records recent sequence, time decay, user-category crossing, and mixed negative sampling instead of attributing the lift to a vague "better model".
+
+## Badcases
+
+Badcase records are available at [`badcases.csv`](badcases.csv) and [`badcases/badcase_samples.csv`](badcases/badcase_samples.csv), covering head-item leakage risk, repeated author exposure, cold-start videos, and weak-negative noise.
 
 ## Run Snapshot
 
@@ -74,7 +90,7 @@ This repo keeps the key artifacts needed to discuss a recommendation recall/rank
 └── outputs/
 ```
 
-## Quick Start
+## How to Run
 
 Recommended:
 
@@ -95,6 +111,10 @@ python3 -m pytest -q
 ```
 
 The scripts are CPU-friendly and run on pseudo data. They are meant to demonstrate a credible experiment workflow, not to expose private platform data.
+
+## What This Repo Proves
+
+This repo proves that the offline recommendation evaluation chain is inspectable and runnable: data schema, time split, negative sampling diagnostics, Two-Tower training entry point, Faiss-style TopK retrieval, metrics, ablation records, and badcase analysis are all present.
 
 ## Offline Metrics Used in the Resume
 
