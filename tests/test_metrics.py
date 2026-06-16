@@ -33,7 +33,7 @@ def test_random_split_is_not_the_reported_main_result() -> None:
     assert "leakage" in random_split["note"]
 
 
-def test_training_output_is_not_placeholder() -> None:
+def test_training_output_is_trainable_model_artifact() -> None:
     import json
 
     meta = json.loads((ROOT / "outputs" / "model_meta.json").read_text(encoding="utf-8"))

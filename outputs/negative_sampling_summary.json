@@ -1,0 +1,12 @@
+{
+  "num_train_rows": 513,
+  "num_positive_rows": 85,
+  "num_weak_negative_rows": 428,
+  "strategies": [
+    "random_negative",
+    "popular_negative",
+    "same_category_negative",
+    "in_batch_negative"
+  ],
+  "positive_rate": 0.1657
+}

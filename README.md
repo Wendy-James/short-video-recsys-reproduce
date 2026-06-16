@@ -7,6 +7,7 @@ This repository implements an offline short-video recommendation workflow for ca
 ## What It Does
 
 - build exposure-level recommendation samples with user, item, feedback, category, author, and timestamp fields
+- build random, popular, same-category, and in-batch negative-sampling diagnostics
 - train a DSSM / Two-Tower recall model with sampled-softmax and BCE-style training protocols
 - build Faiss-style `IndexFlatIP` item retrieval and evaluate top-k candidate quality
 - evaluate Recall@50, NDCG@50, AUC, and tail Recall@50 under a 7-day train / 1-day validation split
@@ -31,6 +32,7 @@ This repo keeps the key artifacts needed to discuss a recommendation recall/rank
 | Experiment Topic | Repository Artifact |
 |---|---|
 | exposure samples, user/item/time fields | `data_schema.md`, `src/data_preprocess.py`, pseudo `outputs/interaction_log.csv` |
+| negative sampling diagnostics | `src/negative_sampling.py`, `outputs/negative_samples.csv`, `outputs/negative_sampling_summary.json` |
 | 7-day train / 1-day validation | `data_schema.md`, `experiments/metrics.csv` |
 | DSSM / Two-Tower | `src/train_twotower.py`, `outputs/model_meta.json` |
 | Faiss IndexFlatIP top-k retrieval | `src/build_faiss_index.py`, `src/evaluate_recall.py` |
@@ -48,12 +50,14 @@ This repo keeps the key artifacts needed to discuss a recommendation recall/rank
 ├── requirements.txt
 ├── src/
 │   ├── data_preprocess.py
+│   ├── negative_sampling.py
 │   ├── train_twotower.py
 │   ├── build_faiss_index.py
 │   ├── evaluate_recall.py
 │   └── train_ranker.py
 ├── experiments/
 │   ├── metrics.csv
+│   ├── generated_metrics.csv
 │   └── ablation.csv
 ├── badcases/
 │   └── badcase_samples.csv
@@ -76,6 +80,7 @@ Equivalent manual commands:
 
 ```bash
 python3 src/data_preprocess.py
+python3 src/negative_sampling.py
 python3 src/train_twotower.py
 python3 src/build_faiss_index.py
 python3 src/evaluate_recall.py

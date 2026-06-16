@@ -8,14 +8,14 @@
   <text x="24" y="72" fill="#93c5fd" font-family="Menlo, Consolas, monospace" font-size="15">$ make all</text>
   <text x="24" y="101" fill="#e2e8f0" font-family="Menlo, Consolas, monospace" font-size="14">python3 src/data_preprocess.py</text>
   <text x="24" y="126" fill="#a7f3d0" font-family="Menlo, Consolas, monospace" font-size="14">wrote outputs/interaction_log.csv</text>
-  <text x="24" y="151" fill="#e2e8f0" font-family="Menlo, Consolas, monospace" font-size="14">python3 src/train_twotower.py</text>
-  <text x="24" y="176" fill="#a7f3d0" font-family="Menlo, Consolas, monospace" font-size="14">trained two_tower_recall with numpy_sgd; wrote outputs/model_meta.json</text>
-  <text x="24" y="201" fill="#e2e8f0" font-family="Menlo, Consolas, monospace" font-size="14">python3 src/build_faiss_index.py</text>
-  <text x="24" y="226" fill="#a7f3d0" font-family="Menlo, Consolas, monospace" font-size="14">wrote outputs/item_index_flatip.npy</text>
-  <text x="24" y="251" fill="#e2e8f0" font-family="Menlo, Consolas, monospace" font-size="14">python3 src/evaluate_recall.py</text>
-  <text x="24" y="276" fill="#a7f3d0" font-family="Menlo, Consolas, monospace" font-size="14">wrote outputs/metrics.csv</text>
+  <text x="24" y="151" fill="#e2e8f0" font-family="Menlo, Consolas, monospace" font-size="14">python3 src/negative_sampling.py</text>
+  <text x="24" y="176" fill="#a7f3d0" font-family="Menlo, Consolas, monospace" font-size="14">wrote outputs/negative_samples.csv</text>
+  <text x="24" y="201" fill="#e2e8f0" font-family="Menlo, Consolas, monospace" font-size="14">python3 src/train_twotower.py</text>
+  <text x="24" y="226" fill="#a7f3d0" font-family="Menlo, Consolas, monospace" font-size="14">trained two_tower_recall with numpy_sgd; wrote outputs/model_meta.json</text>
+  <text x="24" y="251" fill="#e2e8f0" font-family="Menlo, Consolas, monospace" font-size="14">python3 src/build_faiss_index.py && python3 src/evaluate_recall.py</text>
+  <text x="24" y="276" fill="#a7f3d0" font-family="Menlo, Consolas, monospace" font-size="14">wrote outputs/item_index_flatip.npy and outputs/metrics.csv</text>
   <text x="24" y="301" fill="#e2e8f0" font-family="Menlo, Consolas, monospace" font-size="14">python3 src/train_ranker.py</text>
   <text x="24" y="326" fill="#a7f3d0" font-family="Menlo, Consolas, monospace" font-size="14">wrote outputs/ranker_scores.csv</text>
   <text x="24" y="351" fill="#e2e8f0" font-family="Menlo, Consolas, monospace" font-size="14">python3 -m pytest -q</text>
-  <text x="24" y="376" fill="#86efac" font-family="Menlo, Consolas, monospace" font-size="14">.......  [100%]  7 passed</text>
+  <text x="24" y="376" fill="#86efac" font-family="Menlo, Consolas, monospace" font-size="14">........  [100%]  8 passed</text>
 </svg>
