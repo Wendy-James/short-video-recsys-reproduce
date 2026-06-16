@@ -4,6 +4,8 @@
 
 This repository implements an offline short-video recommendation workflow for candidate generation, top-k retrieval evaluation, leakage checks, and experiment review.
 
+**Public reproducible version; no private company data; no online A/B claim.**
+
 ## What It Does
 
 - build exposure-level recommendation samples with user, item, feedback, category, author, and timestamp fields
