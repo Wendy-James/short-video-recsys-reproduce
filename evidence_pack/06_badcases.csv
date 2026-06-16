@@ -1,0 +1,7 @@
+case_id,bucket,symptom,likely_reason,next_check
+sv_bad_001,cold_start_item,new video not recalled,lack of interaction history,add content tags or author prior
+sv_bad_002,popular_bias,topK dominated by hot videos,popularity feature too strong,check popular-item ratio
+sv_bad_003,false_negative,exposure-not-click used as negative,user may not have noticed item,lower weak-negative weight
+sv_bad_004,interest_drift,old category recalled after user changed interest,history window too long,increase time decay
+sv_bad_005,duplicate_author,many same-author items appear,author preference over-weighted,add diversity constraint
+sv_bad_006,tail_weakness,tail videos still under-recalled,sparse item interactions,add content-side features

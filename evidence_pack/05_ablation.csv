@@ -1,0 +1,6 @@
+ablation_id,change,expected_effect,observed_metric_delta,risk_or_failure_case
+ab_01_time_decay,weight recent actions higher,improve interest drift,+0.007 Recall@50,may overfit very recent accidental clicks
+ab_02_category_pref,add user-category preference,improve medium-frequency category matching,+0.004 Recall@50,weak for new users with short history
+ab_03_popular_negative,add popular negatives,reduce easy-negative bias,+0.002 Recall@50,may become conservative around mainstream items
+ab_04_same_category_negative,add same-category negatives,reduce false similar candidates,+0.001 Recall@50,possible false negatives inside same interest area
+ab_05_tail_check,track tail Recall@50,avoid popular-only gains,+0.013 tail Recall@50,tail item cold-start remains weak

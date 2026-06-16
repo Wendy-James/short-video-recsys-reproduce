@@ -25,6 +25,10 @@ This repository implements an offline short-video recommendation workflow for ca
 
 ![terminal snapshot](assets/terminal_snapshot.svg)
 
+## Evidence Pack
+
+For interview review, see [`evidence_pack/`](evidence_pack/). It contains project overview, data schema, metric definitions, experiment CSV, ablation CSV, badcases, run commands, boundary statement, and whiteboard notes.
+
 ## Experiment Coverage
 
 This repo keeps the key artifacts needed to discuss a recommendation recall/ranking experiment end to end:

@@ -1,0 +1,5 @@
+run_id,split,model,embedding_dim,seq_len,negative_sampling,recall50,ndcg50,auc,tail_recall50,note
+sv_base_time,7d_train_1d_valid,two_tower_base,64,20,random,0.112,0.071,0.684,0.058,baseline with id/category/history features
+sv_time_decay,7d_train_1d_valid,two_tower_time_decay,64,20,random,0.119,0.074,0.695,0.063,adds recent behavior weighting
+sv_category_pref,7d_train_1d_valid,two_tower_category_pref,64,20,random,0.123,0.077,0.702,0.067,adds user-category preference
+sv_hard_negative,7d_train_1d_valid,two_tower_hard_negative,64,20,popular_and_same_category,0.126,0.079,0.709,0.071,adds harder negatives and leakage check
